@@ -36,6 +36,7 @@ import { fetchProducts, clearError } from "../features/productsSlice";
 import { addToCart, addToUserCart } from "../features/cartSlice";
 import { addToWishlist, removeFromWishlist } from "../features/WishlistSlice";
 import ProductRecommendations from "../components/ProductRecommendations";
+import { API_BASE_URL } from "../config/backend";
 
 const formatPrice = (price) => {
   return new Intl.NumberFormat("en-IN", {
@@ -110,7 +111,7 @@ export default function HomePage() {
     const fetchActiveCoupons = async () => {
       try {
         console.log('Fetching available coupons...');
-        const response = await fetch('http://localhost:5000/api/coupons/available');
+        const response = await fetch(`${API_BASE_URL}/coupons/available`);
         const data = await response.json();
         
         console.log('Coupons response:', data);
@@ -173,7 +174,7 @@ export default function HomePage() {
     const fetchAllFeaturedAndLiked = async () => {
       try {
         console.log('Starting fetch for all featured/liked products...');
-        const response = await fetch('http://localhost:5000/api/products?limit=1000');
+        const response = await fetch(`${API_BASE_URL}/products?limit=1000`);
         
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

@@ -45,6 +45,7 @@ import {
 } from "@mui/icons-material";
 import { fetchUserOrders } from "../features/authSlice";
 import api from "../services/api";
+import { BACKEND_URL } from "../config/backend";
 
 const formatPrice = (price) => {
   return new Intl.NumberFormat("en-IN", {
@@ -239,7 +240,7 @@ const OrdersPage = () => {
         returnStatus: selectedReturnOrder.returnStatus,
         status: selectedReturnOrder.status
       });
-      console.log('🌐 API URL:', `http://localhost:5000/api/orders/${selectedReturnOrder._id}/return/request`);
+      console.log('🌐 API URL:', `${BACKEND_URL}/api/orders/${selectedReturnOrder._id}/return/request`);
       
       const response = await api.post(`/orders/${selectedReturnOrder._id}/return/request`, {
         reason: returnReason,
@@ -271,7 +272,7 @@ const OrdersPage = () => {
       } else if (err.response?.status === 400) {
         errorMessage = err.response?.data?.message || "Invalid return request.";
       } else if (err.code === 'ERR_NETWORK' || err.message.includes('Network Error')) {
-        errorMessage = "Cannot connect to server. Please ensure:\n1. Backend server is running (http://localhost:5000)\n2. You have internet connection\n3. Try refreshing the page";
+        errorMessage = `Cannot connect to server. Please ensure:\n1. Backend server is running (${BACKEND_URL})\n2. You have internet connection\n3. Try refreshing the page`;
       } else if (!err.response) {
         errorMessage = "Server is not responding. Please check if backend is running.";
       }

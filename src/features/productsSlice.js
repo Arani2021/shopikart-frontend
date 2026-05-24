@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../services/api';
+import { BACKEND_URL } from '../config/backend';
 
 // Async thunks
 export const fetchProducts = createAsyncThunk(
@@ -21,7 +22,7 @@ export const fetchProducts = createAsyncThunk(
       return data;
     } catch (error) {
       // Handle both error.message (from interceptor) and error.response?.data?.message
-      const errorMessage = error?.message || error?.response?.data?.message || 'Failed to fetch products. Make sure the backend server is running on http://localhost:5000';
+      const errorMessage = error?.message || error?.response?.data?.message || `Failed to fetch products. Make sure the backend server is running on ${BACKEND_URL}`;
       console.error('Fetch Products Error:', errorMessage, error);
       return rejectWithValue(errorMessage);
     }

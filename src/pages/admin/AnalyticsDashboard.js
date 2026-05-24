@@ -32,6 +32,7 @@ import {
   LocalOffer,
 } from "@mui/icons-material";
 import AdminLayout from "../../components/AdminLayout";
+import { API_BASE_URL } from "../../config/backend";
 
 const AnalyticsDashboard = () => {
   const theme = useTheme();
@@ -71,7 +72,7 @@ const AnalyticsDashboard = () => {
         // Sales Analytics
         console.log("Fetching sales analytics...");
         const response = await fetch(
-          `http://localhost:5000/api/admin/analytics/sales?period=${period}`,
+          `${API_BASE_URL}/admin/analytics/sales?period=${period}`,
           { headers }
         );
         
@@ -94,7 +95,7 @@ const AnalyticsDashboard = () => {
         // Rental Analytics
         console.log("Fetching rental analytics...");
         const response = await fetch(
-          `http://localhost:5000/api/admin/analytics/rentals?period=${period}`,
+          `${API_BASE_URL}/admin/analytics/rentals?period=${period}`,
           { headers }
         );
         
@@ -117,7 +118,7 @@ const AnalyticsDashboard = () => {
         // Customer Behavior Analytics
         console.log("Fetching customer behavior analytics...");
         const response = await fetch(
-          `http://localhost:5000/api/admin/analytics/customer-behavior?period=${period}`,
+          `${API_BASE_URL}/admin/analytics/customer-behavior?period=${period}`,
           { headers }
         );
         

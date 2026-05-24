@@ -33,6 +33,7 @@ import {
 } from '@mui/icons-material';
 import AdminLayout from '../../components/AdminLayout';
 import api from '../../services/api';
+import { BACKEND_URL } from '../../config/backend';
 
 const AdminIdentityVerifications = () => {
   const [verifications, setVerifications] = useState([]);
@@ -260,16 +261,16 @@ const AdminIdentityVerifications = () => {
                         <CardMedia
                           component="img"
                           height="150"
-                          image={`http://localhost:5000${img}`}
+                          image={`${BACKEND_URL}${img}`}
                           alt={`Document ${index + 1}`}
                           sx={{ cursor: 'pointer', objectFit: 'contain' }}
-                          onClick={() => handleViewImage(`http://localhost:5000${img}`)}
+                          onClick={() => handleViewImage(`${BACKEND_URL}${img}`)}
                         />
                         <Box p={1} textAlign="center">
                           <Tooltip title="View Full Size">
                             <IconButton
                               size="small"
-                              onClick={() => handleViewImage(`http://localhost:5000${img}`)}
+                              onClick={() => handleViewImage(`${BACKEND_URL}${img}`)}
                             >
                               <ZoomIcon />
                             </IconButton>
@@ -290,12 +291,12 @@ const AdminIdentityVerifications = () => {
                     <CardMedia
                       component="img"
                       height="200"
-                      image={`http://localhost:5000${selectedBooking.identityVerification.selfieImage}`}
+                      image={`${BACKEND_URL}${selectedBooking.identityVerification.selfieImage}`}
                       alt="Selfie"
                       sx={{ cursor: 'pointer', objectFit: 'contain' }}
                       onClick={() =>
                         handleViewImage(
-                          `http://localhost:5000${selectedBooking.identityVerification.selfieImage}`
+                          `${BACKEND_URL}${selectedBooking.identityVerification.selfieImage}`
                         )
                       }
                     />
